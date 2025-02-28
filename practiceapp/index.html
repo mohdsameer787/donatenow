@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+        
+</head>
+<body>
+
+    <div class="w-full shadow-xl border-2 bg-white text-gray-800 h-16 p-3 my-2 text-lg">
+        <div class="flex items-center justify-between">
+            <img src="assist/logo2.png" class="w-28" alt="logo" class="h-8 mt-1">
+            <div class="flex gap-8">
+                <ul class="flex justify-center mt-1.5 gap-3">
+                    <li class="text-gray-700">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="text-gray-700">
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+                <a href="signup.html">
+                    <button class="bg-[#d18c0c] text-center h-9 rounded-2xl w-20 hover:bg-[#e4a734] mt-0.5 text-[#edeff0]">
+                        Sign In
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="slider-container">
+        <div class="slider">
+            <img src="assist/img1.png" alt="Slide 1">
+            <img src="assist/img2.jpg" alt="Slide 2">
+            <img src="assist/img3.jpg" alt="Slide 3">
+            <img src="assist/img4.jpg" alt="Slide 4">
+        </div>
+
+        <!-- Prev Button -->
+        <button class="slider-btn prev">
+            <img src="assist/arrow1.svg" alt="Previous">
+        </button>
+
+        <!-- Next Button -->
+        <button class="slider-btn next">
+            <img src="assist/arrow2.svg" alt="Next">
+        </button>
+    </div>
+    <div class="flex flex-col items-center justify-center pt-6">
+        <div class="flex justify-center">
+            <p class="text-3xl text-gray-800">Bring a change</p>
+        </div>   
+        <div class="pt-2 text-[0.7rem] sm:text-sm text-gray-600 text-center">
+            <p>Your generosity can change lives—together, we can make a world of difference.</p>
+            <p>Every donation brings hope to those in need.</p>
+        </div> 
+    </div>
+
+
+    <div class=" flex flex-row  flex-wrap justify-center">
+    <div class="w-[75vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h-96 sm:w-96 m-8">
+        <div class="bg-black relative rounded-lg h-[30vh]">
+            <img class="h-[30vh] w-[75vw] sm:w-96 rounded-lg opacity-60" src="assist/book2.jpg" alt="Books">
+        </div>
+        <div class="flex flex-col mt-2 gap-5">
+            <p class="mt-3 text-gray-700">
+                Share the power of stories – donate books and inspire future minds.
+            </p> 
+            <a href="donationform.html">
+                <button type="button" class="mt-4 w-44 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+                    Donate now
+                </button>
+            </a>   
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

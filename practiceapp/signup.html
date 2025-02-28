@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="border-1 rounded-lg bg-white shadow-xl w-[75vw] sm:h-[75vh] sm:w-[50vw] lg:w-[33vw] mt-10 h-[85vh]">
+        <h2 class="text-3xl mt-5 text-center">Sign Up</h2>
+        <form id="signupForm" class="flex flex-col">
+            <input name="name" id="name" class="border-2 mb-3 mt-7 border-gray-500 text-gray-700 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Name" type="text" required>
+            <input name="email" id="email" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Email" type="email" required>
+            <input name="password" id="password" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Password" type="password" required>
+            <input name="confirmPassword" id="confirmPassword" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Confirm Password" type="password" required>
+            <input name="address" id="address" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Address" type="text" required>
+
+            <p id="errorMessage" class="text-red-500 text-center hidden"></p>
+
+            <button type="submit" class="mt-4 mx-16 p-2 rounded-md text-white bg-[#d18c0c] hover:bg-[#e4a734]">
+                Sign Up
+            </button>
+        </form>
+        <div class="flex gap-1 mt-2 justify-center">
+            <p class="text-center text-gray-700">Already have an account?</p>
+            <a href="login.html" class="text-[#d18c0c]">Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const address = document.getElementById("address").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Basic validation
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match!";
+                errorMessage.classList.remove("hidden");
+                return;
+            }
+
+            // Form data object
+            const formData = {
+                name,
+                email,
+                password,
+                address
+            };
+
+            console.log("Form Submitted:", formData);
+            errorMessage.classList.add("hidden"); // Hide error message if successful
+
+            // Here you can send formData to a backend using fetch() or store it locally
+        });
+    </script>
+
+</body>
+</html>
