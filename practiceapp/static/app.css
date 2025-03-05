@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+.slider-container {
+    width: 90vw;
+    max-height: 400px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #d18c0c;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.slider-btn img {
+    height: 36px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+.loginlogo{
+    width: 62px;
+
+}
+.loginlogo2{
+    width: 28px;
+}
+.logodiv{
+    position: absolute;
+    display: flex
+;
+top: 6px;
+    /* left: 0px; */
+    right: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background-color: rgb(199 199 199);
+    border-radius: 100%;
+
+}
+.none{
+    display: none;
+}
+.logodiv2{
+   
+    display: flex
+;
+    margin-top: 14px;
+    margin-left: 9px;
+    /* left: 0px; */
+    right: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(226 226 226);
+    border-radius: 100%;
+
+}
+.logodiv2 :hover{
+    display: flex
+;
+   
+    /* left: 0px; */
+    
+    align-items: center;
+    justify-content: center;
+   
+    
+    border-radius: 100%;
+
+    background-color: rgb(199 199 199);
+}
+.margin{
+    margin-right: 55px;
+}
+.parent{
+  
+    position: relative;
+}
+.panale{
+
+    transition: 0.2s ease-in-out;
+    border-radius: 8px;
+    top: -8px;
+
+    right: 0px;
+    position: absolute;
+  
+    
+    height: 60vh;
+    background-color: rgb(226 226 226);
+}
+.new1{
+    
+   display: none;
+    right: -625px;
+}
+.infocont{
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    width:auto
+}
+.infocont2{
+    font-size: small;
+    margin-top: 31px;
+}
