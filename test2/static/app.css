@@ -1,0 +1,311 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+.slider-container2 {
+    width: 90vw;
+    max-height: 400px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+.slider2 {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #d18c0c;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.slider-btn img {
+    height: 36px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+.loginlogo{
+    width: 62px;
+
+}
+.loginlogo2{
+    width: 28px;
+}
+.logodiv{
+    position: absolute;
+    display: flex
+;
+top: 6px;
+    /* left: 0px; */
+    right: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background-color: rgb(199 199 199);
+    border-radius: 100%;
+
+}
+.none{
+    display: none;
+}
+.logodiv2{
+   
+    display: flex
+;
+    margin-top: 14px;
+    margin-left: 9px;
+    /* left: 0px; */
+    right: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(226 226 226);
+    border-radius: 100%;
+
+}
+.logodiv2 :hover{
+    display: flex
+;
+   
+    /* left: 0px; */
+    
+    align-items: center;
+    justify-content: center;
+   
+    
+    border-radius: 100%;
+
+    background-color: rgb(199 199 199);
+}
+.margin{
+    margin-right: 55px;
+}
+.parent{
+  
+    position: relative;
+}
+.panale{
+
+    transition: 0.2s ease-in-out;
+    border-radius: 8px;
+    top: -8px;
+
+    right: 0px;
+    position: absolute;
+  
+    
+    height: 60vh;
+    background-color: rgb(226 226 226);
+}
+.new1{
+    
+   display: none;
+    right: -625px;
+}
+.infocont{
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    width:auto;
+    margin-top: 31px;
+
+     font-size: smaller;
+}
+.infocont2{
+   
+    margin-top: 69px;
+}
+
+  /* styling for product card */
+  .cardcontainer1{
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+  padding-bottom: 20px;
+   
+}
+
+.card {
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+}
+.card img {
+    width: 100%;
+    height: 57%;
+    border-radius: 5px;
+}
+.card h2 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+.card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e67e22;
+    margin: 10px 0;
+}
+.card button {
+    background: #d18c0c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.card button:hover {
+    background: #e4a734;
+}
+.h12{
+   height: 30vh;
+}
+
+
+ .slider-container {
+    border-radius: 9px;
+            display: flex;
+            overflow: hidden;
+            width: 85vw;
+            max-width: 42rem;
+            margin-top: 24px;
+            margin-bottom:24px ;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            width:85vw ; /* Adjusted to fit all cards properly */
+            transition: transform 1s ease-in-out;
+        }
+        .card2 {
+            min-width: 100%;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+        .image-container {
+            position: relative;
+            height: 30vh;
+            overflow: hidden;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content p {
+            color: #4a4a4a;
+        }
+        .donate-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            color: white;
+            background-color: #d18c0c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .h123{
+            height: 50vh;
+        }
+        .donate-button:hover {
+            background-color: #e4a734;
+        }
+        @media screen and (max-width: 480px) {
+            .slider-container {
+                display: flex;
+                overflow: hidden;
+                width: 75vw;
+                max-width: 34rem;
+                margin-top: 24px;
+                margin-bottom:24px ;
+                position: relative;
+            } 
+            .card {
+                width: 150px;
+                background: white;
+                height: 300px;
+                max-height: 400px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                text-align: center;
+                padding: 6px;
+            }
+            .card img{
+                height: 51%;
+            }
+            .h12{
+                height: 24vh;
+            }
+            .h123{
+                height: 390px;
+            }
+
+            .card button {
+           
+                font-size: 10px;
+            }
+
+            .card h2 {
+                font-size: 12px;
+                margin: 10px 0;
+            }
+            .card p {
+                font-size: 14px;
+                color: #666;
+            }
+            
+
+
+          }

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <script src="{{ url_for('static', filename='dashboard.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+        
+</head>
+<body  class="parent  " >
+    
+
+    <div class="parent w-full shadow-xl border-2 bg-white text-gray-800 h-16 p-3 my-2 text-lg">
+        <div class="flex items-center justify-between">
+            <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
+            <div class="flex gap-5">
+                <ul class="margin flex  mt-1.5 gap-3">
+                    <li class="text-gray-700">
+                        <a href="/dashboard">Home</a>
+                    </li>
+                    <li class="text-gray-700">
+                        <a href="/about">About</a>
+                    </li>
+                </ul>
+                
+                    
+                
+               
+                    <div onclick="toggle()" class="logodiv">
+                       <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
+                    </div>
+                    
+            </div></div>
+        </div>
+    
+   
+    <div class="flex flex-col items-center justify-center pt-6">
+        <div class="flex justify-center text-center">
+            <p class="text-3xl text-gray-800 font-size"> <b>welcome </b>{{user.name}}</p>
+        </div>   
+      
+<div class="flex w-[100vw] flex-row justify-center items-center">
+    <div class="slider-container justify-center">
+        <div class="slider">
+            <div class="card2">
+                <div class="image-container">
+                    <img src="static/book2.jpg" alt="Books">
+                </div>
+                <div class="card-content">
+                    <p>Share the power of stories – donate books and inspire future minds.</p>
+                    <a href="/donationform" class="donate-button">Donate now</a>
+                </div>
+            </div>
+            <div class="card2">
+                <div class="image-container">
+                    <img src="static/book2.jpg" alt="Books">
+                </div>
+                <div class="card-content">
+                    <p>Give the gift of knowledge – donate today.</p>
+                    <a href="/donationform" class="donate-button">Donate now</a>
+                </div>
+            </div>
+            <div class="card2">
+                <div class="image-container">
+                    <img src="static/book2.jpg" alt="Books">
+                </div>
+                <div class="card-content">
+                    <p>Help build a brighter future – one book at a time.</p>
+                    <a href="/donationform" class="donate-button">Donate now</a>
+                </div>
+            </div>
+            <div class="card2" id="clone">
+                <div class="image-container">
+                    <img src="static/book2.jpg" alt="Books">
+                </div>
+                <div class="card-content">
+                    <p>Share the power of stories – donate books and inspire future minds.</p>
+                    <a href="/donationform" class="donate-button">Donate now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+    <div class="pt-2 mb-8  text-[0.7rem] sm:text-sm text-gray-600 text-center">
+        <p>Your generosity can change lives—together, we can make a world of difference.</p>
+        <p>Every donation brings hope to those in need.</p>
+    </div> 
+</div>
+    
+    
+<div class="cardcontainer1">
+    <div class="card">
+        <img src="{{ url_for('static', filename='book2.jpg')}}" alt="Book Cover">
+        <h2>The Great Book</h2>
+        <p>By John Doe</p>
+        
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="card ">
+        <img src="{{ url_for('static', filename='book2.jpg')}}" alt="Book Cover">
+        <h2>The Great Book</h2>
+        <p>By John Doe</p>
+        <a href="/templates/product.html"></a>
+        <button>Add to Cart</button>
+    </div>
+</div>
+
+
+
+    <div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
+        
+        <div onclick="toggle()" class="logodiv2">
+            
+            
+                <img class="loginlogo2" src="{{ url_for('static', filename='crosse.svg')}}" alt="login">
+
+         </div>
+         <div class="infocont">
+            <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
+            <h1><b>{{user.name}}</b></h1>
+            <div class="infocont ">
+                <p><b>email:</b> {{user.email}}</p>
+                <p><b>address:</b> {{user.addr}}</p>
+  
+            </div>
+            <div class="infocont2">
+                <a href="/logout">
+                    <button type="button" class="mt-4 w-40 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+                       Log out
+                    </button>
+                </a>   
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        let index = 0;
+        const slider = document.querySelector(".slider");
+        const cards = document.querySelectorAll(".card2");
+        const totalCards = cards.length;
+
+        function slideNext() {
+            index++;
+            if (index >= totalCards) {
+                index = 0;
+            }
+           
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+        setInterval(slideNext, 3000);
+    </script>
+</body>
+</html>
