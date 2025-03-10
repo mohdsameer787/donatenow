@@ -91,6 +91,9 @@ def dashboard():
     return render_template("dashboard.html",user=user)
 
 
+@app.route("/product")
+def product():
+    return render_template("product.html")
 
 
 @app.route("/donationform", methods=["GET", "POST"])
@@ -140,3 +143,5 @@ if __name__ == "__main__":
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
     app.run(debug=True, port=4444)
+
+

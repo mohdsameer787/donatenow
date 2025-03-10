@@ -13,7 +13,7 @@
 </head>
 <body  class="parent  " >
     
-
+    <div>
     <div class="parent w-full shadow-xl border-2 bg-white text-gray-800 h-16 p-3 my-2 text-lg">
         <div class="flex items-center justify-between">
             <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
@@ -45,11 +45,13 @@
       
 <div class="flex w-[100vw] flex-row justify-center items-center">
     <div class="slider-container justify-center">
-        <div class="slider">
+        <div class="slider ">
             <div class="card2">
                 <div class="image-container">
                     <img src="static/book2.jpg" alt="Books">
                 </div>
+
+                
                 <div class="card-content">
                     <p>Share the power of stories – donate books and inspire future minds.</p>
                     <a href="/donationform" class="donate-button">Donate now</a>
@@ -59,6 +61,7 @@
                 <div class="image-container">
                     <img src="static/book2.jpg" alt="Books">
                 </div>
+                
                 <div class="card-content">
                     <p>Give the gift of knowledge – donate today.</p>
                     <a href="/donationform" class="donate-button">Donate now</a>
@@ -77,13 +80,61 @@
                 <div class="image-container">
                     <img src="static/book2.jpg" alt="Books">
                 </div>
+          
                 <div class="card-content">
                     <p>Share the power of stories – donate books and inspire future minds.</p>
                     <a href="/donationform" class="donate-button">Donate now</a>
                 </div>
             </div>
         </div>
+
+
+        <div >
+        <button class="slider-btn2 prev">
+            <img src="{{ url_for('static', filename='arrow1.svg')}}" alt="Previous">
+        </button>
+        
+        <!-- Next Button -->
+        <button class="slider-btn2 next">
+            <img src="{{ url_for('static', filename='arrow2.svg')}}" alt="Next">
+        </button>
     </div>
+
+    
+        </div>
+        </div>
+       
+    </div>
+
+<div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
+  
+        
+    <div onclick="toggle()" class="logodiv2">
+        
+        
+            <img class="loginlogo2" src="{{ url_for('static', filename='crosse.svg')}}" alt="login">
+
+     </div>
+     
+     <div class="infocont">
+        <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
+        <h1><b>{{user.name}}</b></h1>
+        <div class="infocont text text-center texttogle ">
+            <p><b>email:</b> {{user.email}}</p>
+            <p><b>address:</b> {{user.addr}}</p>
+
+        </div>
+        <div class="infocont2">
+            <a href="/logout">
+                <button type="button" class="mt-4 w-40 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+                   Log out
+                </button>
+            </a>   
+        </div>
+    </div>
+
+</div> 
+
 </div>
 
    
@@ -100,61 +151,76 @@
         <h2>The Great Book</h2>
         <p>By John Doe</p>
         
-        <button>Add to Cart</button>
+        <a href="/product"><button type="submit">discription</button></a>
     </div>
 
     <div class="card ">
         <img src="{{ url_for('static', filename='book2.jpg')}}" alt="Book Cover">
         <h2>The Great Book</h2>
         <p>By John Doe</p>
-        <a href="/templates/product.html"></a>
-        <button>Add to Cart</button>
+        
+        <a href="/product"><button type="submit">discription</button></a>
+       
     </div>
 </div>
 
 
 
-    <div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
-        
-        <div onclick="toggle()" class="logodiv2">
-            
-            
-                <img class="loginlogo2" src="{{ url_for('static', filename='crosse.svg')}}" alt="login">
+   
 
-         </div>
-         <div class="infocont">
-            <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
-            <h1><b>{{user.name}}</b></h1>
-            <div class="infocont ">
-                <p><b>email:</b> {{user.email}}</p>
-                <p><b>address:</b> {{user.addr}}</p>
   
-            </div>
-            <div class="infocont2">
-                <a href="/logout">
-                    <button type="button" class="mt-4 w-40 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
-                       Log out
-                    </button>
-                </a>   
-            </div>
-        </div> 
-    </div>
 
     <script>
         let index = 0;
         const slider = document.querySelector(".slider");
         const cards = document.querySelectorAll(".card2");
+        const btnslidern = document.querySelector(".next");
+        const btnsliderp = document.querySelector(".prev");
+
+
         const totalCards = cards.length;
 
-        function slideNext() {
+        function  slideNext() {
             index++;
             if (index >= totalCards) {
                 index = 0;
             }
            
             slider.style.transform = `translateX(-${index * 100}%)`;
+        }   
+          
+        function  slideprev() {
+           
+            index--;
+            if (index <= 0) {
+                index = totalCards-1;
+            }
+           
+            slider.style.transform = `translateX(-${index * 100}%)`;
         }
-        setInterval(slideNext, 3000);
+
+function udateslide(){
+    let intervalseter=setInterval(slideNext, 3000);
+}
+
+        let intervalseter=setInterval(slideNext, 3000);
+   
+
+
+     
+        btnslidern.addEventListener("click",()=>{slideNext()
+        
+
+}    )
+
+btnsliderp.addEventListener("click",()=>{ slideprev()
+                
+                 
+}    )
+
+
+
+
     </script>
 </body>
 </html>
