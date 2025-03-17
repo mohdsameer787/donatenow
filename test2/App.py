@@ -88,19 +88,40 @@ def dashboard():
     else:
         id = session["user_id"]
         user = Signup.query.filter_by(id=id).first()
-    return render_template("dashboard.html",user=user)
-
+        donations = Donatebook.query.all()  # Fetch data from the database
+    return render_template('dashboard.html', donation=donations,user=user)
 
 @app.route("/product")
 def product():
     return render_template("product.html")
 
 
+
+@app.route('/productlisting')
+def productlisting():
+        id = session["user_id"]
+        user = Signup.query.filter_by(id=id).first()
+        donations = Donatebook.query.all()  # Fetch data from the database
+        return render_template('productlisting.html', donation=donations,user=user)
+   
+
+
+@app.route("/donationformedi")
+def donationformedi():
+
+   return render_template("donationformedi.html")
+
+
+
+@app.route("/donationforcloth")
+def donationforcloth():
+
+   return render_template("donationforcloth.html")
+
+
 @app.route("/donationform", methods=["GET", "POST"])
 def donationform():
-    if 'user_id' not in session:
-        flash("Please log in first.", "danger")
-        return redirect(url_for('login'))
+
 
     if request.method == "POST":
         title = request.form.get("title")

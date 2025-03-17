@@ -8,7 +8,62 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
-   
+    <style>
+             
+             @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .slogan-container {
+            text-align: center;
+            margin-top: 50px;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .slogan {
+            font-size: 40px;
+            font-weight: bold;
+            color: #e4a734;
+        }
+
+        .subtext {
+            font-size: 20px;
+            color: black;
+            margin-top: 10px;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid black;
+        }
+
+        /* Active class to start animations */
+        .slogan-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slogan-container.active .slogan {
+            animation: bounceIn 1.5s ease-out;
+        }
+
+        .slogan-container.active .subtext {
+            animation: typing 3s steps(40, end), blink 0.7s infinite;
+        }
+    
+    </style>
         
 </head>
 <body>
@@ -18,7 +73,7 @@
             <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
             <div class="flex gap-8">
                 <ul class="flex justify-center mt-1.5 gap-3">
-                    <li class="text-gray-700">
+                    <li class="border-0 text-gray-700">
                         <a href="/">Home</a>
                     </li>
                     <li class="text-gray-700">
@@ -34,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="slider-container2">
+    <div class="slider-container2 shadow-2xl ">
         <div class="slider2">
             <img class="img" src="{{ url_for('static', filename='img1.png')}}" alt="Slide 1">
             <img class="img" class="img" src="{{ url_for('static', filename='img2.jpg')}}" alt="Slide 2">
@@ -62,11 +117,67 @@
         </div> 
     </div>
 
-
-    <div class=" flex flex-row  flex-wrap justify-center">
-    <div class="w-[75vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-96 m-8">
+<div class="flexer2 pl-16 h-[70vh]">
+    <div class=" donatecard flex flex-row  flex-wrap ">
+    <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
         <div class="bg-black relative rounded-lg h12 ">
             <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='book2.jpg')}}" alt="Books">
+        </div>
+        <div class="flex flex-col mt-2 gap-5">
+            <p class="mt-3 px-2  text-gray-700">
+                Share the power of stories – donate books and inspire future minds.
+            </p> 
+            <a href="/donationform">
+                <button type="button" class="mt-4 w-44 p-2 rounded-md text-white bgbrown">
+                    Donate now
+                </button>
+            </a>   
+        </div>
+    </div>
+    </div>
+
+    <div class="slogan-container" id="sloganContainer">
+        <div class="slogan3">"Donate a Book, Ignite a Mind!"</div>
+        <div class="subtext">Your old books can shape someone's future!</div>
+    </div>
+
+</div>
+
+<div class="flexer3  pr-16 h-[70vh] ">
+    <div class=" donatecard flex flex-row  flex-wrap ">
+    <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
+        <div class="bg-black relative rounded-lg h12 ">
+            <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='medi.webp')}}" alt="Books">
+        </div>
+        <div class="flex flex-col mt-2 gap-5">
+            <p class="mt-3 px-2 text-gray-700">
+                Share the power of stories – donate books and inspire future minds.
+            </p> 
+            <a href="/donationformedi">
+                <button type="button" class="mt-4 w-44 p-2 rounded-md text-white bgred">
+                    Donate now
+                </button>
+            </a>   
+        </div>
+    </div>
+
+    </div>
+
+    <div class="slogan-container medicine" id="medicineDonation">
+        <div class="slogan2">"Donate Medicine, Save a Life!"</div>
+        <div class="subtext">Unused medicines can be life-saving!</div>
+    </div>
+
+</div>
+
+    
+
+   
+   <div class="flexer2  pl-16 h-[70vh]">
+    <div class=" donatecard flex flex-row  flex-wrap ">
+    <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
+        <div class="bg-black relative rounded-lg h12 ">
+            <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='cloth.jpg')}}" alt="Books">
         </div>
         <div class="flex flex-col mt-2 gap-5">
             <p class="mt-3 px-2 text-gray-700">
@@ -81,10 +192,76 @@
     </div>
     </div>
 
+    <div class="slogan-container medicine" id="medicineDonation">
+        <div class="slogan">"Donate Medicine, Save a Life!"</div>
+        <div class="subtext">Unused medicines can be life-saving!</div>
+    </div>
+    
+
+</div>
 
 
 
-<script>const slider = document.querySelector(".slider2");
+<footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
+        
+        <!-- Logo & About -->
+        <div>
+          <h5>Donate Now</h5>
+          <p class="mb-0">Your all-in-one platform for making a difference.</p>
+        </div>
+  
+        <!-- Quick Links -->
+        <div class="d-flex gap-3">
+          <a href="#" class="text-white">Home</a>
+          <a href="#" class="text-white">About Us</a>
+          <a href="#" class="text-white">Donate</a>
+          <a href="#" class="text-white">Contact</a>
+        </div>
+  
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+        </div>
+      </div>
+  
+      <!-- Copyright -->
+      <div class="text-center mt-3">
+        <p class="mb-0">&copy; 2025 Donate Now. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- FontAwesome Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+  
+
+
+
+<script>
+
+
+
+function onScroll() {
+            document.querySelectorAll(".slogan-container").forEach(container => {
+                const rect = container.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (rect.top < windowHeight * 0.75) {
+                    container.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", onScroll);
+        window.addEventListener("load", onScroll); 
+
+
+
+const slider = document.querySelector(".slider2");
     const images = document.querySelectorAll(".img");
     const prevBtn = document.querySelector(".prev");
     const nextBtn = document.querySelector(".next");

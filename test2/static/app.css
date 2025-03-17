@@ -12,11 +12,40 @@ body {
     position: relative;
     border-radius: 10px;
 }
+.slider-container3 {
+    width: 90vw;
+    max-height: 470px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+
+
+.donatecontainer{
+    display:flex ;
+  
+    flex-wrap: wrap;
+}
+.flexer{
+    justify-content: flex-start;
+}
 
 .slider2 {
     display: flex;
     transition: transform 0.5s ease-in-out;
     
+}
+.img4
+{
+
+    max-width: 100%;
+    max-height: 200px;
+}.card{
+    max-width: 220px;
+    max-height: 450px;
 }
 
 .slider img {
@@ -67,6 +96,7 @@ body {
 .logodiv{
     position: absolute;
     display: flex
+    
 ;
 top: 6px;
     /* left: 0px; */
@@ -271,12 +301,201 @@ top: 6px;
         }
         
         .h123{
-            height: 50vh;
+            height: 55vh;
         }
         .donate-button:hover {
             background-color: #e4a734;
         }
+
+   .flexer2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+   }
+
+   @keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.slogan-container {
+    text-align: center;
+    margin: 100px auto;
+    width: 80%;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Book Donation Animation */
+#bookDonation.active .slogan {
+    animation: bounceIn 1.5s ease-out;
+}
+
+/* Medicine Donation Animation */
+#medicineDonation.active .slogan {
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.slogan {
+    font-size: 40px;
+    font-weight: bold;
+    color: #e4a734;
+}
+
+
+.slogan2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #bb4102;;
+}
+.slogan3 {
+    font-size: 40px;
+    font-weight: bold;
+    color:  #844311
+}
+
+
+
+.subtext {
+    font-size: 20px;
+    color: black;
+    margin-top: 10px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid black;
+}
+
+/* Different Typing Animation for Each */
+#bookDonation.active .subtext {
+    animation: typing 3s steps(40, end), blink 0.7s infinite;
+}
+
+#medicineDonation.active .subtext {
+    animation: typing 3s steps(40, end), blink 0.7s infinite;
+}
+
+/* Hide cursor after typing completes */
+@keyframes hideCursor {
+    to { border-right: none; }
+}
+
+.subtext.typed {
+    animation: none;
+    border-right: none;
+}
+
+
+
+
+.flexer3{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+}
+.bgbrown{
+  background-color:   #844311;
+
+}
+.bgred{
+    background-color:   #bb4102;
+}
+
+
+
+/* Footer Styling */
+footer {
+    background: #222; /* Dark background */
+    color: #fff; /* White text */
+    padding: 15px 0;
+    font-family: Arial, sans-serif;
+}
+
+footer a {
+    text-decoration: none;
+    color: #bbb;
+    transition: color 0.3s ease;
+    font-size: 16px;
+}
+
+footer a:hover {
+    color: #f8b400; /* Highlight color on hover */
+}
+
+/* Social Media Icons */
+.social-icons a {
+    font-size: 20px;
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f8b400;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .d-flex.gap-3 {
+        flex-direction: row;
+        gap: 10px;
+    }
+    .social-icons {
+        margin-top: 10px;
+    }
+}
+
+
+@media screen and (max-width: 729px) {
+    .slogan-container{
+        display: none;
+    }
+    .flexer2{
+       
+        padding:0px ;
+        justify-content : center;
+       
+       }
+       .flexer3{
+
+        padding:0px ;
+        justify-content : center;
+       
+       }
+}
+
+
         @media screen and (max-width: 480px) {
+
+        
+
+
+            
             .slider-container {
                 display: flex;
                 overflow: hidden;

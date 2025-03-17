@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex align-bottom h-screen bg-gray-100 justify-center">
+
+    <div class="border-1 overflow-scroll rounded-lg bg-white shadow-xl w-[85vw] sm:w-[50vw] lg:w-[33vw] mt-12 h-[90vh] lg:overflow-hidden">
+        <h2 class="text-3xl mt-5 text-center">Donation Form</h2>
+        <form class="flex flex-col" id="donationForm" method="POST" action="/donationform" enctype="multipart/form-data">
+            
+            <label class="ml-12 mt-3 text-gray-600">Medicine name</label>
+            <input class="border-2 mb-2 mt-2 border-gray-500 text-gray-700 p-2 rounded-md mx-12 hover:border-[#d18c0c]" name="title" placeholder="Enter book title" type="text" id="bookTitle" required />            
+            <label class="ml-12 mt-2 text-gray-600">brand</label>
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="author"  placeholder="Enter author name" type="text" id="authorName" required />
+           
+            <label class="ml-12 mt-2 text-gray-600">expiry date</label>
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-400 rounded-md mx-12 hover:border-[#d18c0c]" name="pyear" placeholder="Publishing year" type="date" id="publicationYear" required />
+            
+            <label class="ml-12 mt-2 text-gray-600">Upload Image</label>
+            <input type="file" class="border-2 my-2 border-gray-500 p-2 text-gray-400 rounded-md mx-12 hover:border-[#d18c0c]" name="imgfile"  id="bookImage" />
+            
+            <label class="ml-12 mt-2 text-gray-600">use of medicine</label>
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-400 rounded-md mx-12 hover:border-[#d18c0c]" name="condition" placeholder="discription" type="text" id="bookCondition" required />
+            
+            <button type="submit" class="mt-4 mx-16 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+                Donate
+            </button>
+        </form>
+    </div>
+
+<!--    <script>
+        document.getElementById("donationForm").addEventListener("submit", function(event) {
+            
+
+            let bookTitle = document.getElementById("bookTitle").value;
+            let authorName = document.getElementById("authorName").value;
+            let publicationYear = document.getElementById("publicationYear").value;
+            let bookCondition = document.getElementById("bookCondition").value;
+            let bookImage = document.getElementById("bookImage").files[0];
+
+            if (!bookTitle || !authorName || !publicationYear || !bookCondition || !bookImage) {
+                alert("Please fill in all the fields!");
+                return;
+            }
+
+            alert("Thank you for your donation!");
+            document.getElementById("donationForm").reset();
+        });
+    </script>
+-->
+<script>
+document.getElementById("donationForm").addEventListener("submit", function(event) {
+    let bookTitle = document.getElementById("bookTitle").value;
+    let authorName = document.getElementById("authorName").value;
+    let publicationYear = document.getElementById("publicationYear").value;
+    let bookCondition = document.getElementById("bookCondition").value;
+    let bookImage = document.getElementById("bookImage").files[0];
+
+    if (!bookTitle || !authorName || !publicationYear || !bookCondition || !bookImage) {
+        alert("Please fill in all the fields!");
+        event.preventDefault(); // ❌ Only prevent submission if fields are empty
+        return;
+    }
+
+    alert("Thank you for your donation!"); 
+});
+</script>
+</body>
+</html>
