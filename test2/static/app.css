@@ -407,6 +407,7 @@ top: 6px;
 
 
 .flexer3{
+   
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
@@ -454,6 +455,41 @@ footer a:hover {
     color: #f8b400;
 }
 
+
+.maincontainer{
+  
+    padding-top: 65px;
+    margin-top: 35px;
+    margin-bottom: 45px;
+    padding-bottom: 96px;
+    align-items: center;
+    background-color: #293339;
+}
+.books{
+    overflow-y: scroll;
+}
+.bigtext{
+font-size: 41px;
+}
+
+.productlist{
+    display: flex
+    ;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 109px;
+        gap: 24px;
+}
+
+.slider-container4 {
+    width: 56vw;
+    right: 30px;
+    max-height: 361px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;}
+
 /* Responsive for small screens */
 @media (max-width: 768px) {
     .d-flex {
@@ -472,6 +508,11 @@ footer a:hover {
 
 
 @media screen and (max-width: 729px) {
+
+    .slider-container4 {
+        right: 0px; 
+    }
+    
     .slogan-container{
         display: none;
     }
