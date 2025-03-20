@@ -30,6 +30,21 @@ class Donatebook(db.Model):
     date = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     image_filename = db.Column(db.String(200), nullable=False)
     condition = db.Column(db.String(255), nullable=False)
+class Donatemed(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    brand = db.Column(db.String(50), unique=True, nullable=False)
+    exdate = db.Column(db.TIMESTAMP, default=datetime.utcnow)
+    image_filename = db.Column(db.String(200), nullable=False)
+    desc = db.Column(db.String(255), nullable=False)
+class Donatecloth(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(100), nullable=False)
+    brand = db.Column(db.String(255), unique=True, nullable=False)
+    date = db.Column(db.TIMESTAMP, default=datetime.utcnow)
+    image_filename = db.Column(db.String(200), nullable=False)
+    gender = db.Column(db.String(50), nullable=False)
+    size = db.Column(db.String(255), unique=True, nullable=False)
 with app.app_context():
     db.create_all()  # Create tables
 
@@ -93,7 +108,10 @@ def dashboard():
 
 @app.route("/product")
 def product():
-    return render_template("product.html")
+       id = session["user_id"]
+       user = Signup.query.filter_by(id=id).first()
+       donations = Donatebook.query.all() 
+       return render_template("product.html ",donations=donations,user=user)
 
 
 
@@ -102,24 +120,85 @@ def productlisting():
         id = session["user_id"]
         user = Signup.query.filter_by(id=id).first()
         donations = Donatebook.query.all()  # Fetch data from the database
-        return render_template('productlisting.html', donation=donations,user=user)
+        donations1 = Donatemed.query.all()
+        donations2 = Donatecloth.query.all()
+        return render_template('productlisting.html', donation=donations,donation1=donations1,donation2=donations2,user=user)
    
 
 
-@app.route("/donationformedi")
+@app.route("/donationformedi",methods=["GET", "POST"])
 def donationformedi():
 
-   return render_template("donationformedi.html")
+    if request.method == "POST":
+        name = request.form.get("name")
+        brand = request.form.get("brand")
+        exdate = request.form.get("exdate")  # This is a string like "2025-03-02"
+        desc = request.form.get("desc")
+
+        # Convert the string to a datetime.date object
+        try:
+            date_obj = datetime.strptime(exdate, "%Y-%m-%d").date()
+        except ValueError:
+            return "Invalid date format", 400
+
+        # Handle file upload
+        if 'imgfile' not in request.files:
+            return "No file part", 400
+        file = request.files['imgfile']
+        if file.filename == '':
+            return "No selected file", 400
+
+        # Secure filename and save
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        # Insert into database
+        donation = Donatemed(name=name, brand=brand, exdate=date_obj, image_filename=filename, desc=desc)
+        db.session.add(donation)
+        db.session.commit()
+
+        return "Data submitted successfully"
+
+    return render_template("donationformedi.html")
 
 
 
-@app.route("/donationforcloth")
+@app.route("/donationforcloth",methods=["GET", "POST"])
 def donationforcloth():
 
-   return render_template("donationforcloth.html")
+
+    if request.method == "POST":
+        type = request.form.get("type")
+        brand = request.form.get("brand")
+        size = request.form.get("size")  # This is a string like "2025-03-02"
+        gender = request.form.get("gender")
+        
 
 
-@app.route("/donationform", methods=["GET", "POST"])
+        # Handle file upload
+        if 'imgfile' not in request.files:
+            return "No file part", 400
+        file = request.files['imgfile']
+        if file.filename == '':
+            return "No selected file", 400
+
+        # Secure filename and save
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        # Insert into database
+        donation = Donatecloth(type=type, brand=brand, date=datetime.utcnow(), image_filename=filename, size=size, gender=gender)
+        db.session.add(donation)
+        db.session.commit()
+
+        return "Data submitted successfully"
+
+    return render_template("donationforcloth.html")
+
+
+@app.route("/donatebook", methods=["GET", "POST"])
 def donationform():
 
 

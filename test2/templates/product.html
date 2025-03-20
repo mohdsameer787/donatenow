@@ -4,8 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="{{ url_for('static', filename='dashboard.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>product page </h1>
+<body class="bgp">
+
+
+   
+    <div>
+        <div class="parent w-full shadow-xl border-2 bg-white text-gray-800 h-16 p-3 my-2 text-lg">
+            <div class="flex items-center justify-between">
+                <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
+                <div class="flex gap-5">
+                    <ul class="margin flex  mt-1.5 gap-3">
+                        <li class="text-gray-700">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="text-gray-700">
+                            <a href="/about">About</a>
+                        </li>
+    
+                        <li><a href="/productlisting">Products</a></li>
+                    </ul>
+                    
+                        
+                    
+                   
+                        <div onclick="toggle()" class="logodiv">
+                           <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
+                        </div>
+                        
+                </div></div>
+            </div>
+        
+       
+    
+    
+    
+         
+
+          
+    
+        
+        
+    
+    <div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
+      
+            
+        <div onclick="toggle()" class="logodiv2">
+            
+            
+                <img class="loginlogo2" src="{{ url_for('static', filename='crosse.svg')}}" alt="login">
+    
+         </div>
+         
+         <div class="infocont">
+            <img class="loginlogo" src="{{ url_for('static', filename='image.png')}}" alt="login">
+            <h1><b>{{user.name}}</b></h1>
+            <div class="infocont text text-center texttogle ">
+                <p><b>email:</b> {{user.email}}</p>
+                <p><b>address:</b> {{user.addr}}</p>
+    
+            </div>
+            <div class="infocont2">
+                <a href="/logout">
+                    <button type="button" class="mt-4 w-40 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+                       Log out
+                    </button>
+                </a>   
+            </div>
+        </div>
+    
+    </div> 
+    
+    </div>
+
+    <div class="productcontain">
+
+       <div class="productimg">
+        <img class="pimg" src="{{ url_for('static', filename='img4.jpg')}}" alt="product info">
+       </div>
+
+       <div class="productinfo">
+          <h1 class="text-2xl">Product Name</h1>
+          <div class="mt-2 text-gray-700 ">
+          <div class="text-lg"><span> Donate by: </span> <span> Mohammed sameer</span></div>
+          <div class="text-lg"><span> Brand: </span> <span> zara</span></div>
+          <div class="text-lg"><span>Size: </span> <span> Xl</span></div>
+          <div class="text-lg"><span> Gender: </span> <span>male</span></div>
+        </div>
+      
+       <h1 class="text-xl mt-3">contact deatils</h1>
+       <div class=" text-gray-700 ">
+        <div class="text-lg"><span> Doner Email: </span> <span>Sameer@gmail.com</span></div>
+        
+      </div>
+
+
+      <div>
+        <a href="#">
+          <button type="button" class="mt-48 w-44 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
+             Contact
+          </button>
+      </a>  
+      </div>
+
+ </div>
+    </div>
+
+
+
+
+    <footer class="bg-dark text-white py-3">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center flex-wrap">
+            
+            <!-- Logo & About -->
+            <div>
+              <h5>Donate Now</h5>
+              <p class="mb-0">Your all-in-one platform for making a difference.</p>
+            </div>
+      
+            <!-- Quick Links -->
+            <div class="d-flex gap-3">
+              <a href="#" class="text-white">Home</a>
+              <a href="#" class="text-white">About Us</a>
+              <a href="#" class="text-white">Donate</a>
+              <a href="#" class="text-white">Contact</a>
+            </div>
+      
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+              <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+              <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+            </div>
+          </div>
+      
+          <!-- Copyright -->
+          <div class="text-center mt-3">
+            <p class="mb-0">&copy; 2025 Donate Now. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+      
+
+
+
 </body>
 </html>
+
+
+
+

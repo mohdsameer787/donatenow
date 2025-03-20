@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="{{ url_for('static', filename='dashboard.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -171,11 +172,11 @@
 <div class="productlist ">
     <h1 class="bigtext">Medicine</h1>
     <div class="cardcontainer1 books">
-        {% for donations in donation %}
+        {% for donations1 in donation1 %}
         <div class="card">
-            <img class="img4" src="{{ url_for('static', filename='uploads/' + donations.image_filename) }}" alt="{{donations.title}}">
-            <h2>{{donations.title}}</h2>
-            <p>By {{ donations.author }}</p>
+            <img class="img4" src="{{ url_for('static', filename='uploads/' + donations1.image_filename) }}" alt="{{donations1.name}}">
+            <h2>{{donations1.name}}</h2>
+            <p>By {{ donations1.brand }}</p>
             
             <a href="/product"><button type="submit">discription</button></a>
         </div>
@@ -190,11 +191,11 @@
 <h1 class="bigtext"> cloths </h1>
     
     <div class="cardcontainer1 books">
-        {% for donations in donation %}
+        {% for donations2 in donation2 %}
         <div class="card">
-            <img class="img4" src="{{ url_for('static', filename='uploads/' + donations.image_filename) }}" alt="{{donations.title}}">
-            <h2>{{donations.title}}</h2>
-            <p>By {{ donations.author }}</p>
+            <img class="img4" src="{{ url_for('static', filename='uploads/' + donations2.image_filename) }}" alt="{{donations2.type}}">
+            <h2>{{donations2.type}}</h2>
+            <p>By {{ donations2.brand }}</p>
             
             <a href="/product"><button type="submit">discription</button></a>
         </div>
@@ -244,6 +245,10 @@
 
 <script>
 
+
+
+
+
 function onScroll() {
             document.querySelectorAll(".slogan-container").forEach(container => {
                 const rect = container.getBoundingClientRect();
@@ -270,15 +275,14 @@ function onScroll() {
     const totalSlides = images.length;
     
     function updateSlide() {
-       console.log(currentIndex)
+       
         slider.style.transform = `translatex(-${currentIndex * 100}%)`;
         
     }
     
     function nextSlide() {
         currentIndex = (currentIndex + 1) % totalSlides;
-        console.log("working")
-        console.log(images)
+      
         updateSlide();
     }
     

@@ -10,18 +10,18 @@
 
     <div class="border-1 overflow-scroll rounded-lg bg-white shadow-xl w-[85vw] sm:w-[50vw] lg:w-[33vw] mt-12 h-[90vh] lg:overflow-hidden">
         <h2 class="text-3xl mt-5 text-center">Donation Form</h2>
-        <form class="flex flex-col" id="donationForm" method="POST" action="/donationform" enctype="multipart/form-data">
+        <form class="flex flex-col" id="donationForm" method="POST" action="/donationforcloth" enctype="multipart/form-data">
             
             <label class="ml-12 mt-3 text-gray-600">Cloth type</label>
-            <input class="border-2 mb-2 mt-2 border-gray-500 text-gray-700 p-2 rounded-md mx-12 hover:border-[#d18c0c]" name="title" placeholder="Enter book title" type="text" id="bookTitle" required />            
+            <input class="border-2 mb-2 mt-2 border-gray-500 text-gray-700 p-2 rounded-md mx-12 hover:border-[#d18c0c]" name="type" placeholder="Enter book title" type="text" id="bookTitle" required />            
             <label class="ml-12 mt-2 text-gray-600">brand</label>
-            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="author"  placeholder="Enter author name" type="text" id="authorName" required />
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="brand"  placeholder="Enter author name" type="text" id="authorName" required />
            
             <label class="ml-12 mt-2 text-gray-600">size</label>
-            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="author"  placeholder="small/large/xl" type="text" id="authorName" required />
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="size"  placeholder="small/large/xl" type="text" id="authorName" required />
 
             <label class="ml-12 mt-2 text-gray-600">gender</label>
-            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="author"  placeholder="male/female" type="text" id="authorName" required />
+            <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 hover:border-[#d18c0c]" name="gender"  placeholder="male/female" type="text" id="authorName" required />
 
             <label class="ml-12 mt-2 text-gray-600">Upload Image</label>
             <input type="file" class="border-2 my-2 border-gray-500 p-2 text-gray-400 rounded-md mx-12 hover:border-[#d18c0c]" name="imgfile"  id="bookImage" />
