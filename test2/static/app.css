@@ -4,6 +4,11 @@ body {
     padding: 0;
     background-color: #f9f9f9;
 }
+.hovereffect :hover{
+    color: #107aca;
+    text-decoration: underline;
+
+}
 .slider-container2 {
     width: 90vw;
     max-height: 400px;
@@ -246,6 +251,14 @@ top: 6px;
     text-align: center;
     padding: 15px;
 }
+
+
+.dangertext{
+    color: red;
+     text-align: center;
+ }
+
+
 .card img {
     width: 100%;
     height: 57%;
@@ -518,6 +531,7 @@ font-size: 41px;
         margin-bottom: 109px;
         gap: 24px;
 }
+
 
 .slider-container4 {
     width: 56vw;

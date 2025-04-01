@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate a Book</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+  <div class="border-1 overflow-scroll rounded-lg bg-white shadow-xl w-[85vw] sm:w-[50vw] lg:w-[33vw] h-[90vh]">
+    <h2 class="text-3xl mt-5 text-center text-[#d18c0c]">Donate a Book</h2>
+
+    <form class="flex flex-col" id="donationForm" method="POST" action="/donatebook" enctype="multipart/form-data">
+
+      <!-- Book Title -->
+      <label class="ml-12 mt-3 text-gray-600">Book Title</label>
+      <input class="border-2 mb-2 mt-2 border-gray-500 text-gray-700 p-2 rounded-md mx-12 focus:border-[#d18c0c]" name="title" placeholder="Enter book title" type="text" id="bookTitle" required />
+
+      <!-- Author Name -->
+      <label class="ml-12 mt-2 text-gray-600">Author Name</label>
+      <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 focus:border-[#d18c0c]"  name="author" placeholder="Enter author name" type="text" id="authorName" required />
+
+      <!-- Publication Year -->
+      <label class="ml-12 mt-2 text-gray-600">Publication Year</label>
+      <input class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 focus:border-[#d18c0c]"  name="pyear" type="date" id="publicationYear" required />
+
+      <!-- Book Category -->
+      <label class="ml-12 mt-2 text-gray-600">Category</label>
+      <select name="category" id="bookCategory" class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 focus:border-[#d18c0c]" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-Fiction">Non-Fiction</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Biography">Biography</option>
+        <option value="Education">Education</option>
+        <option value="Romance">Romance</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Comics">Comics</option>
+        <option value="Children's Books">Children's Books</option>
+        <option value="Technology">Technology</option>
+        <option value="Health & Fitness">Health & Fitness</option>
+        <option value="Travel">Travel</option>
+      </select>
+
+      <!-- Upload Image -->
+      <label class="ml-12 mt-2 text-gray-600">Upload Book Image</label>
+      <input type="file" class="border-2 my-2 border-gray-500 p-2 text-gray-400 rounded-md mx-12 focus:border-[#d18c0c]" name="imgfile" accept="image/*" id="bookImage" required />
+
+      <!-- Condition Dropdown -->
+      <label class="ml-12 mt-2 text-gray-600">Book Condition</label>
+      <select name="condition" id="bookCondition" class="border-2 my-2 border-gray-500 p-2 text-gray-700 rounded-md mx-12 focus:border-[#d18c0c]" required>
+        <option value="" disabled selected>Select condition</option>
+        <option value="New">New</option>
+        <option value="Good">Good</option>
+        <option value="Fair">Fair</option>
+        <option value="Poor">Poor</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit" class="mt-4 mx-16 p-2 rounded-md text-white bg-[#d18c0c] hover:bg-[#e4a734]">
+        Donate
+      </button>
+
+    </form>
+  </div>
+
+  <!-- JavaScript Validation -->
+  <script>
+    document.getElementById("donationForm").addEventListener("submit", function (event) {
+      const bookTitle = document.getElementById("bookTitle").value.trim();
+      const authorName = document.getElementById("authorName").value.trim();
+      const publicationYear = document.getElementById("publicationYear").value;
+      const bookCategory = document.getElementById("bookCategory").value;
+      const bookCondition = document.getElementById("bookCondition").value;
+      const bookImage = document.getElementById("bookImage").files[0];
+
+      // Validation for empty fields
+      if (!bookTitle || !authorName || !publicationYear || !bookCategory || !bookCondition || !bookImage) {
+        alert("Please fill in all fields before submitting.");
+        event.preventDefault();
+        return;
+      }
+
+      // Validate image size (less than 5MB)
+      if (bookImage.size > 5 * 1024 * 1024) {
+        alert("Book image size should be less than 5MB.");
+        event.preventDefault();
+        return;
+      }
+
+      // Success message
+      alert("Thank you for your donation! We appreciate your generosity.");
+    });
+  </script>
+
+</body>
+
+</html>

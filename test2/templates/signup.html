@@ -17,7 +17,7 @@
             <input name="password" id="password" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Password" type="password" required>
             <input name="confirmPassword" id="confirmPassword" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Confirm Password" type="password" required>
             <input name="address" id="address" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="Address" type="text" required>
-
+            <input name="phonenum" id="phonenum" class="border-2 my-3 border-gray-500 p-2 rounded-md mx-12 focus:border-[#d18c0c]" placeholder="+91 xxxxxxxx" type="text" required>  
             <p id="errorMessage" class="text-red-500 text-center hidden"></p>
 
             <button type="submit" class="mt-4 mx-16 p-2 rounded-md text-white bg-[#d18c0c] hover:bg-[#e4a734]">
@@ -84,8 +84,10 @@ document.getElementById("signupForm").addEventListener("submit", async function(
     const confirmPassword = document.getElementById("confirmPassword").value.trim();
     const address = document.getElementById("address").value.trim();
     const errorMessage = document.getElementById("errorMessage");
+    const phonenum = document.getElementById("phonenum").value.trim();
 
-    if (!name || !email || !password || !confirmPassword || !address) {
+
+    if (!name || !email || !password || !confirmPassword || !address || !phonenum) {
         errorMessage.textContent = "All fields are required!";
         errorMessage.classList.remove("hidden");
         return;
@@ -103,7 +105,7 @@ document.getElementById("signupForm").addEventListener("submit", async function(
         const response = await fetch("/signup", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ name, email, password, confirmPassword, address })
+            body: new URLSearchParams({ name, email, password, confirmPassword, address, phonenum })
         });
 
         const result = await response.text();

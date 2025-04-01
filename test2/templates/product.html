@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ product.title if category == 'book' else product.name if category == 'medicine' else product.type }}</title>
     <script src="{{ url_for('static', filename='dashboard.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,17 +37,6 @@
                         
                 </div></div>
             </div>
-        
-       
-    
-    
-    
-         
-
-          
-    
-        
-        
     
     <div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
       
@@ -83,29 +72,64 @@
     <div class="productcontain">
 
        <div class="productimg">
-        <img class="pimg" src="{{ url_for('static', filename='img4.jpg')}}" alt="product info">
+        <img class="pimg" src="{{ url_for('static', filename='uploads/' + product.image_filename) }}" alt="product info">
        </div>
 
        <div class="productinfo">
-          <h1 class="text-2xl">Product Name</h1>
+          <h1 class="text-2xl">{{ product.title if category == 'book' else product.name if category == 'medicine' else product.type }}
+</h1>
           <div class="mt-2 text-gray-700 ">
-          <div class="text-lg"><span> Donate by: </span> <span> Mohammed sameer</span></div>
-          <div class="text-lg"><span> Brand: </span> <span> zara</span></div>
-          <div class="text-lg"><span>Size: </span> <span> Xl</span></div>
-          <div class="text-lg"><span> Gender: </span> <span>male</span></div>
-        </div>
+          <div class="text-lg"><span> Donate by: </span> <span> {{ product.donor.name }}</span></div>
+        
+          {% if category == 'book' %}  
+
+
+          <div class="text-lg"><span> Author: </span> <span> {{ product.author }}</span></div>
+          <div class="text-lg"><span>Catrgory: </span> <span> {{ product.category }}</span></div>
+          <div class="text-lg"><span> Condition: </span> <span>{{ product.condition }}</span></div>
+          <div class="text-lg"><span>Publication Year: </span> <span> {{ product.date }}</span></div>
+          <div class="text-lg"><span> Date of Posting: </span> <span>{{ product.datep }}</span></div>        
+
+          {% elif category == 'medicine' %}
+
+          <div class="text-lg"><span> Manufactered By: </span> <span> {{ product.manufacturer }}</span></div>
+          <div class="text-lg"><span>Quantity: </span> <span> {{ product.quantity }}</span></div>
+          <div class="text-lg"><span> Condition: </span> <span>{{ product.condition }}</span></div>
+          <div class="text-lg"><span>Manufactuer Date: </span> <span> {{ product.mfgdate }}</span></div>
+          <div class="text-lg"><span> Expire Date: </span> <span>{{ product.exdate }}</span></div>
+          <div class="text-lg"><span> Category: </span> <span> {{ product.category }}</span></div>
+          <div class="text-lg"><span>Dosage: </span> <span> {{ product.dosage }}</span></div>
+          <div class="text-lg"><span> Other info: </span> <span>{{ product.desc }}</span></div>
+          <div class="text-lg"><span> Date of Posting: </span> <span>{{ product.date }}</span></div>
+
+
+          {% elif category == 'cloth' %}
+
+          <div class="text-lg"><span> Quantity: </span> <span> {{ product.quantity }}</span></div>
+          <div class="text-lg"><span>Colur: </span> <span> {{ product.color }}</span></div>
+          <div class="text-lg"><span> Gender: </span> <span>{{ product.gender }}</span></div>
+          <div class="text-lg"><span>Size: </span> <span> {{ product.size }}</span></div>
+          <div class="text-lg"><span>Other info: </span> <span>{{ product.desc }}</span></div>
+          <div class="text-lg"><span> Condition: </span> <span>{{ product.condition }}</span></div>
+          <div class="text-lg"><span> Date of Posting: </span> <span>{{ product.date }}</span></div>
+
+          {% endif %}
+
+
+
+      </div>
       
        <h1 class="text-xl mt-3">contact deatils</h1>
        <div class=" text-gray-700 ">
-        <div class="text-lg"><span> Doner Email: </span> <span>Sameer@gmail.com</span></div>
+        <div class="text-lg"><span> Doner Email: </span> <span>{{ product.donor.email }}</span></div>
         
       </div>
 
 
       <div>
-        <a href="#">
+        <a href="https://wa.me/{{ product.donor.phonenum }}?text=Hi%20{{ product.donor.name }}%2C%20I%20am%20interested%20in%20your%20donation%20of%20{{ (product.title + '(Book)') if category == 'book' else (product.name + '(Medicine)') if category == 'medicine' else (product.type + '(Cloth)') }}">
           <button type="button" class="mt-48 w-44 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
-             Contact
+             Whatsapp Now
           </button>
       </a>  
       </div>

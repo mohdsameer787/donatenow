@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Header (Same as your site) -->
+    <header class="bg-[#d18c0c] text-white text-center p-4 text-2xl font-bold">
+        Contact Us
+    </header>
+
+    <!-- Contact Form Section -->
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-lg animate-fade-in">
+            <h2 class="text-3xl text-center font-semibold text-gray-700 mb-6">Get in Touch</h2>
+            
+            <form id="contactForm" class="space-y-4">
+                <!-- Name -->
+                <label class="block text-gray-700">Your Name:</label>
+                <input type="text" name="name" class="border p-2 w-full rounded" placeholder="Enter your name" required>
+
+                <!-- Email -->
+                <label class="block text-gray-700">Your Email:</label>
+                <input type="email" name="email" class="border p-2 w-full rounded" placeholder="Enter your email" required>
+
+                <!-- WhatsApp (Optional) -->
+                <label class="block text-gray-700">WhatsApp Number (Optional):</label>
+                <input type="tel" name="whatsapp" class="border p-2 w-full rounded" placeholder="Enter your WhatsApp number">
+
+                <!-- Subject -->
+                <label class="block text-gray-700">Subject:</label>
+                <input type="text" name="subject" class="border p-2 w-full rounded" placeholder="Subject" required>
+
+                <!-- Message -->
+                <label class="block text-gray-700">Message:</label>
+                <textarea name="message" class="border p-2 w-full rounded" placeholder="Write your message here..." required></textarea>
+
+                <!-- Submit Button -->
+                <button type="submit" class="bg-[#d18c0c] text-white p-2 rounded hover:bg-[#e4a734] w-full">Send Message</button>
+            </form>
+
+            <!-- WhatsApp Button -->
+            <div class="text-center mt-4">
+                <a href="https://wa.me/YOUR_NUMBER" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Same as your site) -->
+    <footer class="bg-[#d18c0c] text-white text-center p-4 mt-8">
+        &copy; 2025 DonateNow. All Rights Reserved.
+    </footer>
+
+    <!-- Contact Form JavaScript -->
+    <script src="contact.js"></script>
+
+    <!-- Fade-in Animation -->
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    
+    <script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            whatsapp: formData.get("whatsapp"),
+            subject: formData.get("subject"),
+            message: formData.get("message")
+        };
+
+        // Validation
+        if (!data.name || !data.email || !data.message) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        try {
+            const response = await fetch("/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert("Your message has been sent successfully!");
+                form.reset();
+            } else {
+                alert("Error sending message. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
+        }
+    });
+});
+</script>
+</body>
+</html>

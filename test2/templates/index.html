@@ -73,10 +73,10 @@
             <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
             <div class="flex gap-8">
                 <ul class="flex justify-center mt-1.5 gap-3">
-                    <li class="border-0 text-gray-700">
+                    <li class="border-0 text-gray-700 hovereffect">
                         <a href="/">Home</a>
                     </li>
-                    <li class="text-gray-700">
+                    <li class="text-gray-700 hovereffect">
                         <a href="/about">About</a>
                     </li>
                  
@@ -127,7 +127,7 @@
             <p class="mt-3 px-2  text-gray-700">
                 Share the power of stories – donate books and inspire future minds.
             </p> 
-            <a href="/donationform">
+            <a href="/donatebook">
                 <button type="button" class="mt-4 w-44 p-2 rounded-md text-white bgbrown">
                     Donate now
                 </button>
@@ -183,7 +183,7 @@
             <p class="mt-3 px-2 text-gray-700">
                 Share the power of stories – donate books and inspire future minds.
             </p> 
-            <a href="/donationform">
+            <a href="/donationforcloth">
                 <button type="button" class="mt-4 w-44 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
                     Donate now
                 </button>
@@ -214,10 +214,8 @@
   
         <!-- Quick Links -->
         <div class="d-flex gap-3">
-          <a href="#" class="text-white">Home</a>
-          <a href="#" class="text-white">About Us</a>
-          <a href="#" class="text-white">Donate</a>
-          <a href="#" class="text-white">Contact</a>
+          <a href="/dasboard" class="text-white">Home</a>
+      
         </div>
   
         <!-- Social Media Icons -->
@@ -270,15 +268,14 @@ const slider = document.querySelector(".slider2");
     const totalSlides = images.length;
     
     function updateSlide() {
-       console.log(currentIndex)
+      
         slider.style.transform = `translatex(-${currentIndex * 100}%)`;
         
     }
     
     function nextSlide() {
         currentIndex = (currentIndex + 1) % totalSlides;
-        console.log("working")
-        console.log(images)
+        
         updateSlide();
     }
     
