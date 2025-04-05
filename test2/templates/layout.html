@@ -63,7 +63,7 @@
     
         
         
-    
+   <!-- 
     <div id="dataform" class="panale w-[68vw] sm:w-[30vw] new1  shadow-2xl   ">
       
             
@@ -89,11 +89,216 @@
                     </button>
                 </a>   
             </div>
+            <button onclick="downloadCertificate()">Download Certificate</button>
+
         </div>
     
     </div> 
 
     </div>
+-->
+<!--
+<div class="p-6 max-w-5xl mx-auto space-y-10">
+
+    <!-- 1. User Profile --
+    <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md space-y-3">
+        <img class="w-24 h-24 rounded-full object-cover" src="{{ url_for('static', filename='image.png') }}" alt="User">
+        <h1 class="text-2xl font-bold">{{ user.name }}</h1>
+        <div class="text-center text-gray-700">
+            <p><b>Email:</b> {{ user.email }}</p>
+            <p><b>Address:</b> {{ user.addr }}</p>
+        </div>
+    </div>
+
+    <!-- 2. Donation Progress & Certificate --
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div class="flex justify-between text-sm text-gray-600">
+            <span>Total Donations: <span id="donation-count" class="font-bold text-black">0</span></span>
+            <span class="italic">Till you want</span>
+        </div>
+        <div class="w-full h-6 bg-gray-200 rounded-full overflow-hidden">
+            <div id="progress-fill" class="h-full bg-green-500 text-white text-center text-sm leading-6" style="width: 0%;">
+                0%
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+            <button onclick="updateProgress(10)" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Completed 10</button>
+            <button onclick="updateProgress(50)" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Completed 50</button>
+            <button onclick="updateProgress(100)" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Completed 100</button>
+            <button onclick="updateProgress(200)" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Completed 200</button>
+            <button onclick="updateProgress(300)" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Completed 300</button>
+        </div>
+
+        <form action="/generate_certificate" method="POST" class="pt-4">
+            <input type="hidden" name="username" value="{{ user.name }}">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
+                Download Certificate
+            </button>
+        </form>
+    </div>
+
+    <!-- 3. Donation History --
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-3">
+        <h2 class="text-xl font-semibold">Donation History</h2>
+        <ul class="list-disc ml-5 text-gray-700">
+            {% for donation in user.donations %}
+            <li>{{ donation.date }} - Donated {{ donation.item }} to {{ donation.campaign }}</li>
+            {% else %}
+            <li>No donations yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 4. Current Campaigns --
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <h2 class="text-xl font-semibold">Current Donation Campaigns</h2>
+        {% for campaign in campaigns %}
+        <div class="border-l-4 border-blue-500 pl-4">
+            <h3 class="text-lg font-medium">{{ campaign.title }}</h3>
+            <p class="text-sm text-gray-600">{{ campaign.description }}</p>
+            <a href="/campaign/{{ campaign.id }}" class="text-blue-600 hover:underline text-sm">View Details</a>
+        </div>
+        {% else %}
+        <p class="text-gray-600">No active campaigns right now.</p>
+        {% endfor %}
+    </div>
+
+    <!-- 5. Milestone Badges --
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Milestone Badges</h2>
+        <div class="flex flex-wrap gap-3">
+            {% if user.donation_count >= 10 %}
+            <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm">10+ Donor</span>
+            {% endif %}
+            {% if user.donation_count >= 50 %}
+            <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm">50+ Donor</span>
+            {% endif %}
+            {% if user.donation_count >= 100 %}
+            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">100+ Hero</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 6. Trust Verification --
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold">Trust & Verification</h2>
+        <p class="text-gray-600">Your profile is <span class="font-bold text-green-600">Verified</span>.</p>
+        <p class="text-sm text-gray-500">Verified users gain higher trust with donors and recipients.</p>
+    </div>
+
+    <!-- 7. Logout Button --
+    <div class="text-center pt-6">
+        <a href="/logout">
+            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded">
+                Log out
+            </button>
+        </a>
+    </div>
+
+</div>
+-->
+
+<div class="p-6 max-w-5xl mx-auto space-y-10">
+
+    <!-- 1. User Profile -->
+    <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md space-y-3">
+        <img class="w-24 h-24 rounded-full object-cover" src="{{ url_for('static', filename='image.png') }}" alt="User">
+        <h1 class="text-2xl font-bold">{{ user.name }}</h1>
+        <div class="text-center text-gray-700">
+            <p><b>Email:</b> {{ user.email }}</p>
+            <p><b>Address:</b> {{ user.addr }}</p>
+        </div>
+    </div>
+
+    <!-- 2. Donation Progress & Certificate -->
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div class="flex justify-between text-sm text-gray-600">
+            <span>Total Donations: <span id="donation-count" class="font-bold text-black">{{ user.donation_count }}</span></span>
+            <span class="italic">Till you want</span>
+        </div>
+        <div class="w-full h-6 bg-gray-200 rounded-full overflow-hidden">
+            {% set progress = (user.donation_count / 10 * 100) if user.donation_count < 10 else 100 %}
+            <div id="progress-fill" class="h-full bg-green-500 text-white text-center text-sm leading-6" style="width: {{ progress }}%;">
+                {{ progress|round(0, 'floor') }}%
+            </div>
+        </div>
+
+        <form action="/generate_certificate" method="POST" class="pt-4">
+            <input type="hidden" name="username" value="{{ user.name }}">
+            {% if user.donation_count >= 10 %}
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
+                Download Certificate
+            </button>
+            {% else %}
+            <button type="button" onclick="alert('You have donated only {{ user.donation_count }} item(s). You need at least 10 to unlock the certificate.')" class="bg-gray-400 text-white px-6 py-2 rounded cursor-not-allowed">
+                Download Certificate
+            </button>
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- 3. Donation History -->
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-3">
+        <h2 class="text-xl font-semibold">Donation History</h2>
+        <ul class="list-disc ml-5 text-gray-700">
+            {% for donations in donation %}
+            <li>{{ donations.date }} - Donated {{ donations.item }} to {{ donations.campaign }}</li>
+            {% else %}
+            <li>No donations yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 4. Current Campaigns -->
+    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <h2 class="text-xl font-semibold">Current Donation Campaigns</h2>
+        {% for campaign in campaigns %}
+        <div class="border-l-4 border-blue-500 pl-4">
+            <h3 class="text-lg font-medium">{{ campaign.title }}</h3>
+            <p class="text-sm text-gray-600">{{ campaign.description }}</p>
+            <a href="/campaign/{{ campaign.id }}" class="text-blue-600 hover:underline text-sm">View Details</a>
+        </div>
+        {% else %}
+        <p class="text-gray-600">No active campaigns right now.</p>
+        {% endfor %}
+    </div>
+
+    <!-- 5. Milestone Badges -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Milestone Badges</h2>
+        <div class="flex flex-wrap gap-3">
+            {% if user.donation_count >= 10 %}
+            <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm">10+ Donor</span>
+            {% endif %}
+            {% if user.donation_count >= 50 %}
+            <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm">50+ Donor</span>
+            {% endif %}
+            {% if user.donation_count >= 100 %}
+            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">100+ Hero</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 6. Trust Verification -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold">Trust & Verification</h2>
+        <p class="text-gray-600">Your profile is <span class="font-bold text-green-600">Verified</span>.</p>
+        <p class="text-sm text-gray-500">Verified users gain higher trust with donors and recipients.</p>
+    </div>
+
+    <!-- 7. Logout Button -->
+    <div class="text-center pt-6">
+        <a href="/logout">
+            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded">
+                Log out
+            </button>
+        </a>
+    </div>
+
+</div>
+
+
     {% block body %}{% endblock %}
     
     <footer class="bg-dark text-white py-3">
@@ -127,6 +332,27 @@
           </div>
         </div>
       </footer>
+<!--<script>
+function downloadCertificate() {
+    let userName = prompt("Enter your name for the certificate:");
+    if (userName) {
+        let milestone = 10;  // Change dynamically based on progress
+        window.location.href = `/generate_certificate?name=${userName}&milestone=${milestone}`;
+    }
+}
+</script>-->
+
+<script>
+    let donationCount = 0;
+
+    function updateProgress(count) {
+        donationCount = count;
+        document.getElementById('donation-count').innerText = donationCount;
+        let percent = Math.min((donationCount % 100) || 100, 100);
+        document.getElementById('progress-fill').style.width = percent + "%";
+        document.getElementById('progress-fill').innerText = percent + "%";
+    }
+</script>
     
 </body>
 </html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DonateNow Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+  <style>
+    .table-container {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+<!--
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchDashboard();
+      fetchMessages();
+      fetchDonationTypes();
+
+      window.fetchDonationsByType = fetchDonationsByType;
+      window.deleteDonation = deleteDonation;
+      window.editDonation = editDonation;
+      window.submitEditDonation = submitEditDonation;
+    });
+
+    async function fetchDashboard() {
+      // Example: Replace with actual API URLs
+      const res = await fetch('/api/admin/summary');
+      const data = await res.json();
+      document.getElementById('total-campaigns').textContent = data.campaigns;
+      document.getElementById('total-donations').textContent = data.donations;
+      document.getElementById('total-messages').textContent = data.messages;
+    }
+
+    async function fetchMessages() {
+      const res = await fetch('/api/messages');
+      const messages = await res.json();
+      const container = document.getElementById('messages-container');
+      container.innerHTML = '';
+      messages.forEach(msg => {
+        container.innerHTML += `
+          <div class="border p-3 rounded">
+            <p><strong>Name:</strong> ${msg.name}</p>
+            <p><strong>Email:</strong> ${msg.email}</p>
+            <p><strong>Subject:</strong> ${msg.subject}</p>
+            <p><strong>Message:</strong> ${msg.message}</p>
+          </div>`;
+      });
+    }
+
+    async function fetchDonationTypes() {
+      const donationTypes = ['Books', 'Clothes', 'Money', 'Medicines'];
+      const linksContainer = document.getElementById('donation-links');
+      linksContainer.innerHTML = '';
+      donationTypes.forEach(type => {
+        linksContainer.innerHTML += `
+          <button onclick="fetchDonationsByType('${type}')" class="bg-gray-200 hover:bg-[#d18c0c] hover:text-white px-3 py-1 rounded m-1">${type}</button>`;
+
+      });
+    }
+
+    async function fetchDonationsByType(type) {
+      const res = await fetch(`/api/donations/${type.toLowerCase()}`);
+      const donations = await res.json();
+      const tableContainer = document.getElementById('donation-table');
+      tableContainer.innerHTML = `
+        <h3 class="text-xl font-semibold mt-4">All ${type} Donations</h3>
+        <table class="min-w-full bg-white border mt-2">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-2">Donor</th>
+              <th class="p-2">Items/Amount</th>
+              <th class="p-2">Date</th>
+              <th class="p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${donations.map(d => `
+              <tr class="border-t">
+                <td class="p-2">${d.name}</td>
+                <td class="p-2">${d.amount}</td>
+                <td class="p-2">${d.date}</td>
+                <td class="p-2 space-x-2">
+                  <button onclick="editDonation(${d.id})" class="text-blue-600">Edit</button>
+                  <button onclick="deleteDonation(${d.id})" class="text-red-600">Delete</button>
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function deleteDonation(id) {
+      if (!confirm("Are you sure to delete this donation?")) return;
+      await fetch(`/api/donation/${id}`, { method: 'DELETE' });
+      alert("Donation deleted.");
+      location.reload();
+    }
+
+    async function editDonation(id) {
+      const res = await fetch(`/api/donation/${id}`);
+      const donation = await res.json();
+      document.getElementById('edit-id').value = donation.id;
+      document.getElementById('edit-name').value = donation.name;
+      document.getElementById('edit-type').value = donation.type;
+      document.getElementById('edit-amount').value = donation.amount;
+      document.getElementById('edit-form').classList.remove('hidden');
+    }
+
+    async function submitEditDonation() {
+      const id = document.getElementById('edit-id').value;
+      const body = {
+        name: document.getElementById('edit-name').value,
+        type: document.getElementById('edit-type').value,
+        amount: document.getElementById('edit-amount').value,
+      };
+      await fetch(`/api/donation/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      alert("Donation updated.");
+      document.getElementById('edit-form').classList.add('hidden');
+      location.reload();
+    }
+  </script> -->
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-[#d18c0c] text-white p-4 text-center text-2xl font-bold">
+    DonateNow Admin Panel
+  </header>
+
+  <div class="flex">
+    <aside class="w-64 bg-white h-screen shadow-md p-4">
+      <nav class="space-y-2">
+        <a href="#dashboard" class="block px-4 py-2 rounded hover:bg-[#d18c0c] hover:text-white">Dashboard</a>
+        <a href="#campaigns" class="block px-4 py-2 rounded hover:bg-[#d18c0c] hover:text-white">Campaigns</a>
+        <a href="#donations" class="block px-4 py-2 rounded hover:bg-[#d18c0c] hover:text-white">Donations</a>
+        <a href="#messages" class="block px-4 py-2 rounded hover:bg-[#d18c0c] hover:text-white">Messages</a>
+      </nav>
+    </aside>
+
+    <main class="flex-1 p-6 space-y-10 overflow-y-auto">
+      <section id="dashboard">
+        <h2 class="text-2xl font-semibold text-[#d18c0c] mb-4">Dashboard</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white p-4 shadow rounded text-center">
+            <p class="text-gray-500">Total Campaigns</p>
+            <h3 class="text-2xl font-bold text-[#d18c0c]" id="total-campaigns">{{ totalcampaign }}</h3>
+          </div>
+          <div class="bg-white p-4 shadow rounded text-center">
+            <p class="text-gray-500">Total Donations</p>
+            <h3 class="text-2xl font-bold text-[#d18c0c]" id="total-donations">{{ totaldonation }}</h3>
+          </div>
+          <div class="bg-white p-4 shadow rounded text-center">
+            <p class="text-gray-500">Messages Received</p>
+            <h3 class="text-2xl font-bold text-[#d18c0c]" id="total-messages">{{ countcontact }}</h3>
+          </div>
+        </div>
+      </section>
+
+      <section id="campaigns">
+        <h2 class="text-2xl font-semibold text-[#d18c0c] mb-4">Manage Campaigns</h2>
+        <!-- Campaign form (left static, backend integration optional) -->
+        <form class="bg-white p-4 rounded shadow space-y-4" action="/admin/dashboard?#campaigns" method="POST" >
+          <input type="text" placeholder="Campaign Title" class="w-full border p-2 rounded" name="name" required>
+          <textarea placeholder="Campaign Description" class="w-full border p-2 rounded" name="desc" required></textarea>
+          <input type="date" class="w-full border p-2 rounded" name="date" required>
+          <button class="bg-[#d18c0c] text-white px-4 py-2 rounded hover:bg-[#e4a734]">Add Campaign</button>
+        </form>
+      </section>
+
+      <section id="donations">
+        <h2 class="text-2xl font-semibold text-[#d18c0c] mb-4">Manage Donations</h2>
+        <div id="donation-links" class="mb-4 flex flex-wrap">
+
+        <button onclick="showTable(1)" id="bookbtn" href="booktable" class="bg-gray-200 hover:bg-[#d18c0c] hover:text-white px-3 py-1 rounded m-1">Book</button>
+        <button onclick="showTable(2)" id="medicinebtn" href="booktable" class="bg-gray-200 hover:bg-[#d18c0c] hover:text-white px-3 py-1 rounded m-1">medicine</button>
+        <button onclick="showTable(3)" id="clothbtn" href="booktable" class="bg-gray-200 hover:bg-[#d18c0c] hover:text-white px-3 py-1 rounded m-1">cloth</button>
+    
+        
+
+        </div>
+        <div id="tables" class="table-container"></div>
+      
+      </section>
+
+      <section id="messages">
+        <h2 class="text-2xl font-semibold text-[#d18c0c] mb-4">Contact Messages</h2>
+        <div class="bg-white p-4 rounded shadow space-y-2" id="messages-container">
+          <!-- Fetched messages will appear here -->
+{% for msgs in msg %}
+          <div class="border p-3 rounded">
+            <p><strong>Date:</strong> {{msgs.date}}</p>
+            <p><strong>Name:</strong> {{msgs.name}}</p>
+            <p><strong>Email:</strong> {{msgs.email}}</p>
+            <p><strong>Subject:</strong> {{msgs.subject}}</p>
+            <p><strong>Message:</strong> {{msgs.massage}}</p>
+            <p><strong>Whatsapp Num:</strong> {{msgs.phone_num}}</p>
+          </div>
+{% endfor %}
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="edit-form" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded w-96 space-y-4">
+      <h3 class="text-xl font-semibold text-center">Edit Donation</h3>
+      <input type="hidden" id="edit-id">
+      <input type="text" id="edit-name" class="w-full border p-2 rounded" placeholder="Donor Name">
+      <input type="text" id="edit-type" class="w-full border p-2 rounded" placeholder="Donation Type">
+      <input type="text" id="edit-amount" class="w-full border p-2 rounded" placeholder="Amount">
+      <button onclick="submitEditDonation()" class="bg-[#d18c0c] text-white px-4 py-2 rounded w-full hover:bg-[#e4a734]">Update Donation</button>
+      <button onclick="document.getElementById('edit-form').classList.add('hidden')" class="text-red-600 w-full mt-2">Cancel</button>
+    </div>
+  </div>
+
+  <footer class="bg-[#d18c0c] text-white text-center p-4 mt-8">
+    &copy; 2025 DonateNow. All Rights Reserved.
+  </footer>
+
+
+  <script>
+    const tables = {
+      1: `
+        <table>
+          <thead>
+           <tr><b>Books</b></tr>
+          </thead>
+          <tbody>
+            <tr><td>Row 1</td><td>book A</td></tr>
+            <tr><td>Row 2</td><td>book B</td></tr>
+          </tbody>
+        </table>
+      `,
+      2: `
+        <table>
+          <thead>
+           <tr><b>Medicines</b></tr>
+          </thead>
+          <tbody>
+            <tr><td>Row 1</td><td>medicine X</td></tr>
+            <tr><td>Row 2</td><td>medicine Y</td></tr>
+          </tbody>
+        </table>
+      `,
+      3: `
+        <table>
+          <thead>
+            <tr><b>Cloths</b></tr>
+          </thead>
+          <tbody>
+            <tr><td>Row 1</td><td>cloth M</td></tr>
+            <tr><td>Row 2</td><td>cloth N</td></tr>
+          </tbody>
+        </table>
+      `
+    };
+
+    function showTable(number) {
+      document.getElementById("tables").innerHTML = tables[number];
+    }
+  </script>
+</body>
+</html>
+
+
+  
