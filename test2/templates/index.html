@@ -62,12 +62,99 @@
         .slogan-container.active .subtext {
             animation: typing 3s steps(40, end), blink 0.7s infinite;
         }
+
+    :root {
+  --main-color: #d18c0c;
+  --text-color: #333;
+  --bg-light: #f9f9f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  background: white;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-color);
+ 
+}
+
+.logo span {
+  color:black;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: var(--main-color);
+}
+
+.btn {
+  background: var(--main-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: black;
+}
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
     
-    </style>
+   </style>
         
 </head>
 <body>
-
+<!--
     <div class="w-full shadow-xl border-2 bg-white text-gray-800 h-16 p-3 my-2 text-lg">
         <div class="flex items-center justify-between">
             <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1">
@@ -89,6 +176,26 @@
             </div>
         </div>
     </div>
+-->
+<!-- header -->
+
+  <header class="header">
+    <div class="container header-flex">
+ <!--     <div class="logo">  <img src="{{ url_for('static', filename='logo2.png')}}" class="w-28" alt="logo" class="h-8 mt-1"></div>-->
+
+     <div class="logo">Donate<span>Now</span></div>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="#dbook">Donate Book</a>
+        <a href="#dmed">Donate Medicine</a>
+        <a href="#dcloth">Donate Cloth</a>
+        <a href="/contact">Contact</a>
+        <a href="/login" class="btn">Login</a>
+      </nav>
+    </div>
+  </header>
+
     <div class="slider-container2 shadow-2xl ">
         <div class="slider2">
             <img class="img" src="{{ url_for('static', filename='img1.png')}}" alt="Slide 1">
@@ -121,13 +228,13 @@
     <div class=" donatecard flex flex-row  flex-wrap ">
     <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
         <div class="bg-black relative rounded-lg h12 ">
-            <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='book2.jpg')}}" alt="Books">
+            <img id="dbook" class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='book2.jpg')}}" alt="Books">
         </div>
         <div class="flex flex-col mt-2 gap-5">
             <p class="mt-3 px-2  text-gray-700">
                 Share the power of stories – donate books and inspire future minds.
             </p> 
-            <a href="/donatebook">
+            <a href="/donatebook" >
                 <button type="button" class="mt-4 w-44 p-2 rounded-md text-white bgbrown">
                     Donate now
                 </button>
@@ -147,7 +254,7 @@
     <div class=" donatecard flex flex-row  flex-wrap ">
     <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
         <div class="bg-black relative rounded-lg h12 ">
-            <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='medi.webp')}}" alt="Books">
+            <img  id="dmed" class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='medi.webp')}}" alt="Books">
         </div>
         <div class="flex flex-col mt-2 gap-5">
             <p class="mt-3 px-2 text-gray-700">
@@ -177,13 +284,13 @@
     <div class=" donatecard flex flex-row  flex-wrap ">
     <div class="w-[65vw] flex flex-col text-center border-gray-300 shadow-2xl bg-white rounded-lg h123  sm:w-80 m-4">
         <div class="bg-black relative rounded-lg h12 ">
-            <img class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='cloth.jpg')}}" alt="Books">
+            <img id="dcloth" class="h12 w-[75vw] sm:w-96 rounded-lg opacity-60" src="{{ url_for('static', filename='cloth.jpg')}}" alt="Books">
         </div>
         <div class="flex flex-col mt-2 gap-5">
             <p class="mt-3 px-2 text-gray-700">
                 Share the power of stories – donate books and inspire future minds.
             </p> 
-            <a href="/donationforcloth">
+            <a href="/donationforcloth" >
                 <button type="button" class="mt-4 w-44 p-2 rounded-md text-white hover:bg-[#e4a734] bg-[#d18c0c]">
                     Donate now
                 </button>
@@ -200,25 +307,25 @@
 
 </div>
 
-
+<!--
 
 <footer class="bg-dark text-white py-3">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
         
-        <!-- Logo & About -->
+        <!-- Logo & About --
         <div>
           <h5>Donate Now</h5>
           <p class="mb-0">Your all-in-one platform for making a difference.</p>
         </div>
   
-        <!-- Quick Links -->
+        <!-- Quick Links --
         <div class="d-flex gap-3">
           <a href="/dasboard" class="text-white">Home</a>
       
         </div>
   
-        <!-- Social Media Icons -->
+        <!-- Social Media Icons --
         <div class="social-icons">
           <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
           <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
@@ -226,23 +333,28 @@
         </div>
       </div>
   
-      <!-- Copyright -->
+      <!-- Copyright --
       <div class="text-center mt-3">
         <p class="mb-0">&copy; 2025 Donate Now. All rights reserved.</p>
       </div>
     </div>
   </footer>
   
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome Icons --
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
   
 
 
+<script>
+-->
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 DonateNow. Built with love and kindness.</p>
+    </div>
+  </footer>
 
 <script>
-
-
-
 function onScroll() {
             document.querySelectorAll(".slogan-container").forEach(container => {
                 const rect = container.getBoundingClientRect();

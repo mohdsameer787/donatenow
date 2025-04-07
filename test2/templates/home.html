@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DonateNow - Home</title>
+  <style>
+    :root {
+  --main-color: #d18c0c;
+  --text-color: #333;
+  --bg-light: #f9f9f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  background: white;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.logo span {
+  color: black;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: var(--main-color);
+}
+
+.btn {
+  background: var(--main-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: black;
+}
+
+/* Hero Section */
+.hero {
+  background: var(--main-color);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Counter */
+.counter-section {
+  background: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.counter-section h2 {
+  margin-bottom: 10px;
+}
+
+#counter {
+  font-size: 48px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+/* About */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Quotes */
+.quotes {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.quote-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.quote-card {
+  background: var(--bg-light);
+  border-left: 5px solid var(--main-color);
+  padding: 20px;
+  max-width: 300px;
+  box-shadow: 0 0 10px #00000010;
+  font-style: italic;
+  transition: transform 0.3s;
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+}
+
+.quote-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+/* Gallery */
+.gallery {
+  padding: 60px 20px;
+  background: var(--bg-light);
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00000015;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* CTA */
+.cta {
+  background: var(--main-color);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+.testimonials {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.slider {
+  position: relative;
+  max-width: 700px;
+  margin: 30px auto 0;
+}
+
+.slide {
+  display: none;
+  font-style: italic;
+  background: var(--bg-light);
+  padding: 25px;
+  border-left: 5px solid var(--main-color);
+  box-shadow: 0 0 10px #00000010;
+  border-radius: 8px;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+.inspire {
+  padding: 60px 20px;
+  background: var(--bg-light);
+  text-align: center;
+}
+
+.inspire h2 {
+  font-size: 2em;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+.inspire .subtext {
+  color: #555;
+  font-size: 1.1em;
+  margin-bottom: 30px;
+}
+
+.quote-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.quote-card {
+  background: #fff;
+  padding: 20px;
+  border-left: 5px solid var(--main-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  width: 280px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.quote-card p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-card span {
+  font-weight: bold;
+  color: #333;
+}
+
+.cta-btn {
+  background: var(--main-color);
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #b6760a;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-flex">
+      <div class="logo">Donate<span>Now</span></div>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/donate">Donate</a>
+        <a href="#quotes">Inspire</a>
+        <a href="#gallery">Gallery</a>
+        <a href="/contact">Contact</a>
+        <a href="/login" class="btn">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Be the Change You Want to See</h1>
+      <p>Join the mission to support lives through donations and kindness.</p>
+      <a href="#donate" class="btn">Donate Now</a>
+    </div>
+  </section>
+
+  <!-- Counter -->
+  <section class="counter-section">
+    <div class="container">
+      <h2>Total Donations</h2>
+      <div id="counter">0</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>Why DonateNow?</h2>
+      <p>We are a transparent platform allowing anyone to donate items like books, clothes, medicine, and more to the ones in need. Our mission is to bring a small change that leads to a better tomorrow.</p>
+    </div>
+  </section>
+
+  <!-- Quotes / Testimonials -->
+  <section id="quotes" class="quotes">
+    <div class="container">
+      <h2>Words that Inspire</h2>
+      <div class="quote-cards">
+        <div class="quote-card">
+          <p>"No one has ever become poor by giving." <br><span>- Anne Frank</span></p>
+        </div>
+        <div class="quote-card">
+          <p>"We make a living by what we get, but we make a life by what we give."<br><span>- Winston Churchill</span></p>
+        </div>
+        <div class="quote-card">
+          <p>"The best way to find yourself is to lose yourself in the service of others." <br><span>- Mahatma Gandhi</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery 
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2>Our Impact</h2>
+      <div class="gallery-grid">
+        <img src="https://source.unsplash.com/400x300/?donate,help" alt="Donation 1"/>
+        <img src="https://source.unsplash.com/400x300/?charity,volunteer" alt="Donation 2"/>
+        <img src="https://source.unsplash.com/400x300/?clothes,donation" alt="Donation 3"/>
+        <img src="https://source.unsplash.com/400x300/?food,give" alt="Donation 4"/>
+      </div>
+    </div>
+  </section> -->
+  
+  <!-- Gallery -->
+<section id="gallery" class="gallery">
+  <div class="container">
+    <h2>Our Impact</h2>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1580137189272-c9379f8864fd?auto=format&fit=crop&w=800&q=80" alt="Volunteers distributing food"/>
+      <img src="https://images.unsplash.com/photo-1534908187227-3e8e5f8a3e66?auto=format&fit=crop&w=800&q=80" alt="Happy kids supported by charity"/>
+      <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80" alt="Book donation drive"/>
+      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80" alt="Clothing support"/>
+    </div>
+  </div>
+</section>
+  <!-- Testimonial Slider -->
+<section class="testimonials">
+  <div class="container">
+    <h2>Stories from Donors</h2>
+    <div class="slider">
+      <div class="slide active">
+        <p>"I never thought a small donation could bring such joy to a child. Thank you DonateNow!"<br><span>- Priya Sharma</span></p>
+      </div>
+      <div class="slide">
+        <p>"Seamless experience, real impact. Love this initiative!"<br><span>- Raj Verma</span></p>
+      </div>
+      <div class="slide">
+        <p>"The progress tracking and certificates really keep me motivated to give more."<br><span>- Meena Joshi</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Inspire Section -->
+<section id="inspire" class="inspire">
+  <div class="container">
+    <h2>Be the Change You Wish to See</h2>
+    <p class="subtext">Let’s spread kindness and make the world better—one donation at a time.</p>
+
+    <div class="quote-cards">
+      <div class="quote-card">
+        <p>"No one has ever become poor by giving."</p>
+        <span>- Anne Frank</span>
+      </div>
+      <div class="quote-card">
+        <p>"We make a living by what we get, but we make a life by what we give."</p>
+        <span>- Winston Churchill</span>
+      </div>
+      <div class="quote-card">
+        <p>"Helping one person might not change the world, but it could change the world for one person."</p>
+        <span>- Unknown</span>
+      </div>
+    </div>
+
+    <a href="/signup" class="cta-btn">Start Inspiring Now</a>
+  </div>
+</section>
+
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <div class="container">
+      <h2>Your kindness creates waves of hope.</h2>
+      <a href="#donate" class="btn">Donate Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 DonateNow. Built with love and kindness.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    let counter = document.getElementById('counter');
+let count = 0;
+let target = 2540;
+let speed = 20;
+
+function updateCounter() {
+  if (count < target) {
+    count += Math.ceil((target - count) / 20);
+    counter.innerText = count;
+    setTimeout(updateCounter, speed);
+  } else {
+    counter.innerText = target;
+  }
+}
+// Counter logic remains as it is...
+
+// Testimonial slider
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+
+function showNextSlide() {
+  slides[index].classList.remove('active');
+  index = (index + 1) % slides.length;
+  slides[index].classList.add('active');
+}
+
+setInterval(showNextSlide, 4000);
+
+
+window.onload = updateCounter;
+
+  </script>
+</body>
+</html>

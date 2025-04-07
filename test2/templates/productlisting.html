@@ -1,5 +1,12 @@
-{% extends "layout.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{{ url_for('static', filename='dashboard.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
        <style>          
     @keyframes bounceIn {
         0% { transform: scale(0.8); opacity: 0; }
@@ -53,13 +60,160 @@
     .slogan-container.active .subtext {
         animation: typing 3s steps(40, end), blink 0.7s infinite;
     }
- 
+
+:root {
+  --main-color: #d18c0c;
+  --text-color: #333;
+  --bg-light: #f9f9f9;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  background: white;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-color);
+
+}
+
+.logo span {
+  color:black;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: var(--main-color);
+}
+
+.btn {
+  background: var(--main-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: black;
+}
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
  </style>    
 
 
 </head>
 <body >
+  <header class="header">
+    <div class="container header-flex">
+     <div class="logo">Donate<span>Now</span></div>
+      <nav class="nav">
+        <a href="/dashboard">Home</a>
+        <a href="/about">About</a>
+        <a href="#dbook">Donate Book</a>
+        <a href="#dmed">Donate Medicine</a>
+        <a href="#dcloth">Donate Cloth</a>
+        <a href="/contact">Contact</a>
+        <a href="/productlisting">Donations</a>
+      </nav>
+    </div>
+  </header>
 
+ <div class="flex flex-col items-center justify-center pt-6">
+            <div class="flex justify-center text-center">
+                <p class="text-3xl text-gray-800 font-size"> <b>welcome </b>{{user.name}}</p>
+            </div>
+          </div>
+
+
+
+        <div class="slider-container3 shadow-2xl  mt-8">
+            <div class="slider2">
+                <img class="img" src="{{ url_for('static', filename='img1.png')}}" alt=>
+                <img class="img" class="img" src="{{ url_for('static', filename='img2.jpg')}}" alt="Slide 2">
+                <img class="img" src="{{ url_for('static', filename='img3.jpg')}}" alt=>
+                <img class="img" src="{{ url_for('static', filename='img4.jpg')}}" alt=>
+            </div>
+
+            <!-- Prev Button -->
+
+        </div>
+
+
+<section id="nearby" class="py-8 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-500 inline-block">Nearby Donations</h2>
+    
+    {% if nearby_items %}
+
+
+
+  </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for item in nearby_items %}
+          <div class="bg-white shadow-md rounded-2xl overflow-hidden transition-transform transform hover:scale-105 duration-300">
+            <img src="{{ item.image_url or '/static/default.jpg' }}" alt="{{ item.title }}" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">{{ item.title }}</h3>
+              <p class="text-gray-600 mt-2">{{ item.description[:80] }}...</p>
+              <p class="text-sm text-indigo-600 mt-2">Category: {{ item.__class__.__name__ }}</p>
+              <a href="/donation/{{ item.id }}" class="inline-block mt-4 px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition">View</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-gray-600">No nearby donations found within 5km range.</p>
+    {% endif %}
+  </div>
+</section>
 
 
 
@@ -116,7 +270,12 @@
       
     </div> </div>
 
-
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 DonateNow. Built with love and kindness.</p>
+    </div>
+  </footer>
 
 
 
@@ -195,5 +354,7 @@ function onScroll() {
 
     </script>
 
-{% endblock %}
+</body>
+</html>
+
 

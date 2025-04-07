@@ -4,9 +4,14 @@ from datetime import datetime,date
 import os
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
-
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.colors import black, blue, red
+from PIL import Image
 from flask_login import current_user,LoginManager,UserMixin,login_user
 from sqlalchemy import func
+import requests
+from math import radians, cos, sin, asin, sqrt
 
 
 app = Flask(__name__)
@@ -42,6 +47,8 @@ class Signup(db.Model,UserMixin):
     date = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     phonenum = db.Column(db.String(50), nullable=False)
     donation_count = db.Column(db.Integer, default=0)
+    lat = db.Column(db.Float)
+    long = db.Column(db.Float)
 class Donatebook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -105,6 +112,36 @@ class Contact(db.Model):
 with app.app_context():
     db.create_all()  # Create tables
 
+
+def get_lat_lng_from_address(address):
+    url = "https://map-geocoding.p.rapidapi.com/json"
+    querystring = {"address": address}
+    headers = {
+        "x-rapidapi-key": "2bc88d0a51msh450860b4482d9a7p18fb98jsn5c1476bbb980",
+        "x-rapidapi-host": "map-geocoding.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+    data = response.json()
+
+    if data["status"] == "OK":
+        lat = data["results"][0]["geometry"]["location"]["lat"]
+        lng = data["results"][0]["geometry"]["location"]["lng"]
+        return lat, lng
+    return None, None
+
+
+def calculate_distance(lat1, lon1, lat2, lon2):
+    # Radius of earth in kilometers
+    R = 6371.0
+
+    dlat = radians(lat2 - lat1)
+    dlon = radians(lon2 - lon1)
+    a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a))
+    distance = R * c
+    return distance
+
 def __repr__(self):
         return f"<Campaign {self.title}>"
 def remove_expired_medicines():
@@ -119,6 +156,9 @@ def load_user(user_id):
     return Signup.query.get(int(user_id))
 @app.route("/")
 def home():
+    return render_template("home.html")
+@app.route("/donate")
+def donate():
     return render_template("index.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -129,6 +169,7 @@ def signup():
         password = request.form['password']
         address = request.form['address']
         contact = request.form['phonenum']
+        lat, lng = get_lat_lng_from_address(address)
 
         # Check if email already exists
         existing_user = Signup.query.filter_by(email=email).first()
@@ -140,7 +181,7 @@ def signup():
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         # Save to database
-        new_user = Signup(name=name, email=email, phonenum=contact, password=hashed_password, addr=address,date=datetime.utcnow())
+        new_user = Signup(name=name,lat=lat,long=lng, email=email, phonenum=contact, password=hashed_password, addr=address,date=datetime.utcnow())
         db.session.add(new_user)
         db.session.commit()
 
@@ -223,16 +264,47 @@ def product(id):
 
     return render_template('product.html', product=product, category=category,user=user)
 
-@app.route('/productlisting')
+'''@app.route('/productlisting')
 def productlisting():
         remove_expired_medicines()
         id = session["user_id"]
         user = Signup.query.filter_by(id=id).first()
+        user_address = user.addr.lower() if user else ""
         donations = Donatebook.query.all()  # Fetch data from the database
         donations1 = Donatemed.query.all()
         donations2 = Donatecloth.query.all()
+        all_donations = donations + donations1 + donations2
+
+        # Filter nearby donations based on user address
+        nearby_donations = [item for item in all_donations if user_address in item.address.lower()]
         return render_template('productlisting.html', donation=donations,donation1=donations1,donation2=donations2,user=user)
-   
+   '''
+
+@app.route('/productlisting')
+def productlisting():
+    remove_expired_medicines()
+    id = session["user_id"]
+    user = Signup.query.filter_by(id=id).first()
+
+    user_lat = user.lat
+    user_lng = user.long
+
+    # Sabhi donations fetch karo
+    donations = Donatebook.query.all()
+    donations1 = Donatemed.query.all()
+    donations2 = Donatecloth.query.all()
+
+    # Nearby filter karlo (within 5 km example)
+    nearby_items = []
+    for donation in donations + donations1 + donations2:
+        donor = donation.donor
+        if donor.lat and donor.long:
+            dist = calculate_distance(user_lat, user_lng, donor.lat, donor.long)
+            if dist <= 5:  
+                nearby_items.append(donation)
+
+    return render_template('productlisting.html',donation=donations,donation1=donations1,donation2=donations2,nearby_items=nearby_items,user=user)
+
 
 
 @app.route("/donationformedi",methods=["GET", "POST"])
